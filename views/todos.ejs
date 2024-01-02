@@ -1,0 +1,85 @@
+<%- include("partials/header.ejs") %>
+    <hr>
+    <section class="my-todos-title ">
+        <div class="container d-flex  ">
+            <h3 class="text-primary">My Todos</h3>
+        </div>
+    </section>
+    <hr>
+
+    <section class="todos-cards">
+        <div class="cards-container">
+            <% for(let i=0; i<locals.todoArr.length; i++ ) { %>
+                <div class="card text-bg-light mb-3 <% if(locals.todoArr[i]["done"]){ %>
+                    done
+                    <% } %>
+                        " style="max-width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <%= locals.todoArr[i]["title"] %>
+                                    <hr>
+                            </h5>
+                            <p class="card-text text-center">
+                                <%= locals.todoArr[i]["body"] %>
+                                    <hr>
+                            </p>
+                            <span>
+                                <div class="container d-flex justify-center gap-2">
+                                    <form action="/home-done" method="POST">
+                                        <input class="actionBtn" id="doneId" type="submit" value="DONE">
+                                        <input type="hidden" name="theId" value=<%=locals.todoArr[i]["idNum"] %>>
+                                    </form>
+                                    <form action="/home-todo" method="POST">
+                                        <input class="actionBtn"  id="todoId" type="submit" value="TODO">
+                                        <input type="hidden" name="theId" value=<%=locals.todoArr[i]["idNum"] %>>
+                                    </form>
+
+                                    <form action="/home-del" method="POST">
+                                        <input class="actionBtn" id="deleteId" type="submit" value="DEL">
+                                        <input type="hidden" name="theId" value=<%=locals.todoArr[i]["idNum"] %>>
+                                    </form>
+                                    <form action="/home-edit" method="POST">
+                                        <input class="actionBtn" id="editId" type="submit" value="EDIT">
+                                        <input type="hidden" name="theId" value=<%=locals.todoArr[i]["idNum"] %>>
+                                    </form>
+                                </div>
+
+                                <div class="<% if(locals.todoArr[i]["editBarHidden"]){ %>hiddenBar<% } %>"><hr>
+                                        <form action="/save-changes" method="POST">
+                                        <div class="container d-flex flex-column mt-2 p-0">
+                                            <h3 class="fs-4 text-center ">Edit Title</h3><input type="text" name="altTitle" value=<%=locals.todoArr[i]["title"] %>>
+                                            <h3 class="fs-4 text-center mt-2">Edit Body</h3> <input type="text" name="altBody" value=<%=locals.todoArr[i]["body"] %>>
+                                            <input type="hidden" name="theId" value=<%=locals.todoArr[i]["idNum"] %>>
+                                            <input type="submit" class="rounded-4 mt-2 p-1 " value="SAVE"></input>
+                                        </div>
+                                        </form>
+                                </div>
+
+                            </span>
+                        </div>
+                </div>
+
+                <% } %>
+        </div>
+        <br>
+
+        <div class="container d-flex flex-column justify-center align-content-center">
+            <br>
+            <section class="add-todo">
+                <div class="form-container">
+                    <form action="/add-todo" method="POST">
+                        <input class="p-2 fs-3 rounded-3" id="titleId" name="title" type="text" placeholder="Title">
+                        <input class="p-2 fs-3 rounded-3" id="bodyId" name="body" type="body" placeholder="Body">
+                        <input class="rounded-2 bg-primary-subtle p-2 fst-italic fw-bolder" id="btnId" type="submit"
+                            value="ADD TODO">
+                    </form>
+                </div>
+            </section>
+        </div>
+    </section>
+    </div>
+
+
+
+
+    <%- include("partials/footer.ejs") %>

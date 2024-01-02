@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="name_box inline-block">
+        <div class="enter block">
+            <form action="/home" method="POST">
+                <label>ENTER YOUR NAME:</label>
+                <input id="inputName" name="name" type="text" class="feedback-input" placeholder="Name">
+                <input id="submitButton" type="submit" value="submit">
+
+            </form>
+        </div>
+    </section>
+
+
+
+    <%- include("partials/footer.ejs") %>
