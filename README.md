@@ -1,4 +1,4 @@
-Todo List 
+Todo List :
 
 Task Management:
 
@@ -9,7 +9,7 @@ JavaScript,
 HTML,
 CSS,
 Express.js (backend framework),
-Axios (for making API requests),
+Axios (for making API requests to OpenWeather)
 EJS (for templating)
 
 
@@ -19,6 +19,6 @@ Clone or download the repository.
 
 Install dependencies: npm install
 
-Start the server: npm start
+Start the application using: node index.js 
 
 Access the application in your web browser (typically at http://localhost:3000)
